@@ -1,6 +1,8 @@
 %Create symbolic variable a(Development coefficient)And b(Ash effect)
 syms a b;
-c = [a b]';
+c = [a b]'; //vetor transposto (em pé)
+
+%Achar funcoes: transposição, inversão e multiplicação de matriz. Cumsum validar. 
 
 %Original sequence A
 %A=input('Please enter the original sequence (format [1.5, 2.1, 3.3, 4.6, 5.7]): ');
@@ -20,11 +22,13 @@ end
 C(1) = [];
 
 %Construct the data matrix 
-B = [-C;ones(1,n-1)];
+B = [-C;ones(1,n-1)]; %cria array com numeros uns (ones(linhas, colunas))
+                      %matriz com os valores de -C na primeira linha, e na segunda linha numeros 1 com tamnho de n-1
 Y = A; Y(1) = []; Y = Y';
 
 %Use least squares method to calculate parameter a(Development coefficient)And b(Ash effect)
-c = inv(B*B')*B*Y;
+c = inv(B*B')*B*Y; %multiplica B*B' (é multiplicação de matrizes, ver metodo pronto)
+                   %inversao tb precisa de um metodo pronto
 c = c';
 a = c(1); b = c(2);
 
